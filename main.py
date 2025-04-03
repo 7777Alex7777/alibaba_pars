@@ -6,6 +6,10 @@ import sqlite3 as sl
 from datetime import datetime
 import os
 
+#https://russian.alibaba.com/trade/search?spm=a2700.galleryofferlist.0.0.7c057671FzMfgu&fsb=y&IndexArea=product_en&keywords=soda&tab=all&&page=4
+#https://russian.alibaba.com/trade/search?spm=a2700.galleryofferlist.pageModule_fy23_pc_search_bar.searchButton&tab=all&searchText=soda
+
+
 def all_table():
     path = r'C:\Users\russa\PycharmProjects\pythonProject3'
     files = os.listdir(path)
@@ -15,7 +19,7 @@ def all_table():
 def collection_cards(link):
     browser = webdriver.Chrome()
     browser.get(f'https://russian.alibaba.com/trade/search?tab=all&searchText={link}')
-    pages = int(browser.find_elements(By.XPATH, '//div[@class="seb-pagination__container"]//a[@class="seb-pagination__pages-link"]')[-1].text)
+    pages = int(browser.find_elements(By.XPATH, '//a[@class="seb-pagination__pages-link"]')[-2].text)
 
     try:
         for j in range(1, pages):
